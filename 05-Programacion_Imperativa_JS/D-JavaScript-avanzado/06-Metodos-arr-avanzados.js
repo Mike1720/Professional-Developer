@@ -68,7 +68,7 @@ console.log(str); // output: [ 'Cuyo', 'Gato', 'PERRO', 'Zorro', 'gato', 'perro'
 
 console.log("--------------------------------------------------------------------------------------------------------------");
 
-// .find()
+// .find(predicate, thisArg)
 /* 
   Retorna el valor del primer elemento en el arreglo donde el predicado es "true", y "undefined" de lo contrario.
   -predicate -> "find" llama al predicado una vez por cada elemento del arreglo, en orden ascendente, hasta que encuentra uno donde el predicado
@@ -105,3 +105,80 @@ let candidatoSeleccionado = candidatos.find(function (candidato) {
 }, criterios)
 
 console.log(candidatoSeleccionado); // output: { nombre: 'cara', 'añosDeExperiencia': 4, edad: 22 }
+
+console.log("--------------------------------------------------------------------------------------------------------------");
+
+// .map(callbackfn, thisArg)
+/* 
+  Llama a una función callback en cada elemento del arreglo y retorna un arreglo que contiene los resultados.
+  -callbackfn -> Función que acepta hasta tres argumentos. El metodo "map" llama a la función callback una vez por cada elemento en el arreglo
+  -thisArg -> Objeto al cual la paalabra reservada "this" puede hacer referencia en la función callback. Si es omitido, undefined es usado como
+    valor "this"
+*/
+let numbers = [2, 4, 6];
+
+function multiplicarPor3(numero) {
+  return numero * 3
+}
+
+function multiplicarIndice(numero, index) {
+  return numero * index
+}
+
+let numerosMultiplcadosPor3 = numbers.map(multiplicarPor3)
+console.log(numerosMultiplcadosPor3); // output: [ 6, 12, 18 ]
+
+let numerosMultiplcadosPor5 = numbers.map(number => number * 5)
+console.log(numerosMultiplcadosPor5); // output: [ 10, 20, 30 ]
+
+let numeroPorIndice = numbers.map(multiplicarIndice)
+console.log(numeroPorIndice);
+
+console.log("--------------------------------------------------------------------------------------------------------------");
+
+// .filter(predicate, thisArg)
+/* 
+  Retorna los elementos de un arreglo que cumplen una condición especificada en una función callback
+  -predicate -> función que acepta hasta tres argumentos. El metodo "filter" llama al función de predicado una vez por cada elemento en el arreglo
+  -thisArg -> Objeto al cual hace referencia "this" en la función de predicado. Si "thisArg" es omitido, "undefined" es usado como valor "this"
+*/
+let ages = [22, 8, 17, 14, 30, 18];
+let mayoresEdad = ages.filter(age => age >= 18)
+console.log(mayoresEdad); // output: [ 22, 30, 18 ]
+
+console.log("--------------------------------------------------------------------------------------------------------------");
+
+// .reduce(callbackfn, initialValue)
+/* 
+  Llama una función callback especificada para todos los elementos en el arreglo. El valor de retorno de la función callback es el valor acumulado,
+    y es proveido como un argumento en la siguiente llamada a la función callback.
+  -callbackfn -> Función que acepta hasta cuatro argumentos. El metodo "reduce" llama a la función callback una vez por cada elemento en el arreglo.
+  -initialValue -> Si "initialValue" es especificado, este es usado como el valor inicial para comenzar la acumulación. La primer llamada a la función callback provee este
+  valor como argumento en lugar de un valor del arreglo.
+*/
+let nums = [5, 7, 16];
+let sumatoria = nums.reduce((acc, curr) => {
+  return acc += curr
+}, 0)
+
+console.log(sumatoria); // output: 28
+
+console.log("--------------------------------------------------------------------------------------------------------------");
+
+// .forEach()
+/*
+  Ejecuta la acción especifica para cada elemento en el arreglo.
+  -callbackfn -> Función que acepta hasta tres argumentos. "forEach" invoca la función callback una vez por cada elemento en el arreglo
+  -thisArg -> Objeto al cual hace referencia "this" en la función de predicado. Si "thisArg" es omitido, "undefined" es usado como valor "this"
+*/
+let paises = ["Argentina", "Colombia", "México"];
+paises.forEach(pais => console.log(pais.toLowerCase())) // output: argentina / colombia / méxico
+paises.forEach(pais => pais.toLowerCase()) // No retorna algun valor
+
+let newArr = []
+
+paises.forEach(pais => {
+  newArr.push(pais.toLowerCase())
+})
+
+console.log(newArr); // output: [ 'argentina', 'colombia', 'méxico' ]
