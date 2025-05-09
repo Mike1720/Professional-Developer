@@ -82,16 +82,17 @@ function gastoMensualTotal(mes) {
   }
   return acc
 }
+// ----------------------------------------------------------------------------------------------------
+// CALLBACKS OPCION 1
 // GASTOS DE CADA SEMANA
-function gastosSemanales(mes, callback) {
+function gastosSemanales_Opcion_1(mes, callback) {
   let gastos = []
   for (let i = 0; i < mes.length; i++) {
     gastos.push(callback(mes[i]))
   }
   return gastos
 }
-
-function gastoSemana(semana) {
+function gastoSemana_Opcion_1(semana) {
   let acc = 0
   for (let i = 0; i < semana.length; i++) {
     console.log(semana[i]);
@@ -99,6 +100,23 @@ function gastoSemana(semana) {
     acc += semana[i]
   }
   return acc
+}
+// ----------------------------------------------------------------------------------------------------
+// CALLBACKS OPCION 2
+// GASTOS DE CADA SEMANA
+
+function gastosSemanales_Opcion_2(mes, callback) {
+  let gastoTotalSemanal = []
+  mes.forEach(semana => {
+    gastoTotalSemanal.push(callback(semana))
+  });
+  return gastoTotalSemanal  
+}
+function gastoSemana_Opcion_2(semana) {
+  let total = semana.reduce((acc, curr) => {
+    return acc += curr
+  }, 0)
+  return total
 }
 
 
@@ -136,4 +154,10 @@ console.log(gastoDomingo_Enero); // output: 70
 let gastoEnero = gastoMensualTotal(enero)
 console.log(gastoEnero);
 
-let gastoPorSemana_Enero = gastosSemanales(enero, gastoSemana)
+let gastoPorSemana_Enero;
+
+gastoPorSemana_Enero = gastosSemanales_Opcion_1(enero, gastoSemana_Opcion_1)
+console.log(gastoPorSemana_Enero); // output: [ 28, 77, 126, 175 ] 
+
+gastoPorSemana_Enero = gastosSemanales_Opcion_2(enero, gastoSemana_Opcion_2)
+console.log(gastoPorSemana_Enero); // output: [ 28, 77, 126, 175 ] 
