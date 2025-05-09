@@ -5,6 +5,22 @@ const prompt = PromptSync({ sigint: true })
 // ALMACENAMIENTO DE TAREAS
 let tasks = [];
 
+// CATEGORIAS
+let categories = ["Trabajo", "Personal"]
+
+// ------ MOSTRAR TODAS LAS CATEGORIAS
+function showAllCategories() {
+  console.log("Categorias existentes:");
+  categories.forEach((category, index) => console.log(`${index}. ${category}`)
+  )
+}
+
+// ------ AGREGAR CATEGORIAS
+function addCategory(category) {
+  categories.push(category)
+  console.log(`Categoria: ${category} agregada con éxito!`);
+}
+
 // ------ AGREGAR NUEVA TAREA
 function addTask(taskName, deadLine = null) {
   let task = {
@@ -62,6 +78,8 @@ function showMenu() {
   3. Completar tarea
   4. Modificar tarea
   5. Mostrar tareas
+  6. Ver todas las categorias
+  7. Agregar nueva categoria
   0. Salir
 `
   );
@@ -97,6 +115,13 @@ function interactUser() {
       case 5:
         console.log("---- Lista de tareas ----");
         console.log(tasks);
+        break;
+      case 6:
+        showAllCategories()
+        break;
+      case 7:
+        let newCategory = prompt("Ingresa el nombre de la nueva categoria: ")
+        addCategory(newCategory)
         break;
       case 0:
         break;
