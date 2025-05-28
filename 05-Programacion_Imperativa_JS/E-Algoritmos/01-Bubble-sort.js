@@ -33,7 +33,10 @@ function bubbleSort(array) {
 let orderedArr
 let arr = [3, 1, 3, 22, 2, 97, 101, 1]
 let arr2 = [1, 1, 12, 2, 2, 3, 6, 10]
+let arr3 = ["auto", "Zorro", "Auto", "zapato"]
 orderedArr = bubbleSort(arr)
 console.log(orderedArr);
 orderedArr = bubbleSort(arr2)
+console.log(orderedArr);
+orderedArr = bubbleSort(arr3) // Ordenará de A-Z para después ordenar de a-z
 console.log(orderedArr);
